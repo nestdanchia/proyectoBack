@@ -1,0 +1,16 @@
+# Carpetas de producción / Compilación (Si usas TypeScript, Vite, etc.)
+# Dependencias
+node_modules/
+dist/
+build/
+.next/
+
+# Logs del sistema y de errores
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
