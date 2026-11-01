@@ -130,4 +130,8 @@ Si instalaste la extensión directamente en Visual Studio Code para no abrir pro
 4. **Para POST:** Cambiás a `POST`, vas a la pestaña **`Body`** que está abajo, elegís **`JSON`** y pegás tu objeto de pruebas antes de enviar.
 
 *Tip:* La ventaja de la extensión es que te permite ver la terminal de Node.js abajo y los resultados del testeo al costado en una sola pantalla.
-![Prueba de Registro con Postman](./assets/registro-postman.png)
+![Prueba de Registro con Postman](./Express/assets/registro-postman.png)
+
+
+## git remote -v te muestra la url de tu protecto 
+## con start https://.....  se abre 
