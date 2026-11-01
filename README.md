@@ -28,7 +28,8 @@ A diferencia de los servidores tradicionales que sirven páginas web estáticas 
 ```text
 Cliente (Postman) ──> Middlewares ──> Rutas (Endpoints) ──> Controlador/Lógica ──> Datos (Array/JSON)
 ```
-
+## siempre antes de las pruebas iniciar el servidor que esta en la carpeta Express
+## situarse en ella y ejecutar :npm run start
 ### 🧠 Conceptos Clave del Servidor:
 * **`app.use(cors())`**: Middleware que habilita el control de acceso de origen cruzado, permitiendo que navegadores desde otros dominios consulten la API de forma segura.
 * **`app.use(express.json())`**: El "traductor". Intercepta las peticiones, procesa el texto plano en formato JSON entrante y lo transforma en un objeto JS accesible mediante `req.body`.
@@ -47,8 +48,29 @@ Se usa para pedir información al servidor. El navegador lo ejecuta por defecto 
 
 ### 📤 Método POST (Crear recursos)
 Se usa para enviar información nueva y sensible hacia el servidor. Los datos viajan ocultos dentro del cuerpo de la petición (**`req.body`**). Se prueba de forma profesional utilizando herramientas como **Postman**.
+## Cambiar desplegable de Postman  POST
+## ruta http://localhost:3000/users/register
+## en Body seleccionar raw
+## pestaña desplegable en JSON !!!!!
+## En el cuerpo de la peticion copiar y pegar luego del 1 que se ve 
+{
+    "name": "Juan Perez",
+    "email": "juan@example.com",
+    "password": "secreto123"
+}
+## Al hacer clic en Send, servidor responderá con el código 201 Created y este JSON
+##
+## en consola veras Usuario registrado en consola: Juan Perez (juan@example.com)
+PS C:\Users\ndchi\Desktop\proyectoBack\Express> npm run start 
 
----
+> express@1.0.0 start
+> node index.js
+
+Servidor API REST corriendo en http://localhost:3000
+Usuario registrado en consola: Juan Perez (juan@example.com)
+
+
+
 
 ## 🛡️ 4. Control de Errores Robustos (Middleware 404)
 
@@ -108,3 +130,4 @@ Si instalaste la extensión directamente en Visual Studio Code para no abrir pro
 4. **Para POST:** Cambiás a `POST`, vas a la pestaña **`Body`** que está abajo, elegís **`JSON`** y pegás tu objeto de pruebas antes de enviar.
 
 *Tip:* La ventaja de la extensión es que te permite ver la terminal de Node.js abajo y los resultados del testeo al costado en una sola pantalla.
+![Prueba de Registro con Postman](./assets/registro-postman.png)
