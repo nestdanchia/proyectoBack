@@ -24,7 +24,7 @@ Express funciona como una tubería secuencial (un pipeline).
     buscando únicamente
  middlewares que tengan 4 parámetros (err, req, res, next).
  1. Ignora el notFoundHandler: Pasa de largo por app.use(notFoundHandler) porque ese middleware tiene solo 2 parámetros (req, res). Express sabe que no está preparado para procesar errores.
-2. Frena en tu errorHandler: Al llegar a app.use(errorHandler),
+2. Frena en  errorHandler: Al llegar a app.use(errorHandler),
  Express ve que tiene los 4 parámetros requeridos. Detiene el viaje ahí, le inyecta el error en el primer parámetro (err) y ejecuta tu lógica para darle la respuesta final al cliente.
 
 */
