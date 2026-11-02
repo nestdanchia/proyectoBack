@@ -135,3 +135,76 @@ Si instalaste la extensión directamente en Visual Studio Code para no abrir pro
 
 ## git remote -v te muestra la url de tu protecto 
 ## con start https://.....  se abre 
+
+## En el caso de Express_capas se reopartieron las responsabilidades de 
+## la otra forma monolitica
+## iniciar el servidor desde esta carpeta ---Desktop\proyectoBack\Express_capas> npm ## run start
+## y luego probar las peticiones desde postman
+Cuando un cliente (como Postman o tu frontend) haga una petición a:
+GET http://localhost:3000/api/users
+1. El Servidor ve que empieza con /api y se lo pasa a usuariosRouter.
+2. El Enrutador ve que continúa con /users y ejecuta la función getUsers del controlador.
+3. El Controlador le pide la lista a usersService.getAllUsers().
+4. El Servicio retorna el array vacío [].
+5. El Controlador responde al cliente con un estado 200 y el JSON []
+• GET http://localhost:3000/api/users ➔ Entra por /api, pasa a usuariosRouter, y este lo lleva a /users.
+• GET http://localhost:3000/api/products ➔ Entra por /api, pasa a productosRouter 
+(porque el de usuarios lo ignora al no coincidir la ruta interna), y este lo lleva a /product
+index.js monta cada router en su base (/api/users, /api/products) y los archivos de rutas definen solo las sub-rutas relativas (/, /register, /:id)
+
+## Probar Postman 
+
+. Obtener todos los usuarios
+
+• Método: GET
+• URL: http://localhost:3000/api/users
+• Respuesta esperada (200 OK): [] (Un array vacío, ya que aún no hay usuarios guardados).
+
+2. Registrar un nuevo usuario
+
+• Método: POST
+• URL: http://localhost:3000/api/users/register
+• Configuración en Postman: Ve a la pestaña Body ➔ Seleccionar raw ➔ Cambia el tipo a JSON.
+• Cuerpo (Ejemplo JSON a enviar):
+
+.{
+  "name": "Juan Perez",
+  "email": "juan@example.com",
+  "password": "mi_clave_segura_123"
+}
+
+3. Obtener un usuario por su ID
+
+• Método: GET
+• URL: http://localhost:3000/api/users/1 (Puedes cambiar el 1 por cualquier ID)
+
+📦 Módulo de Productos
+
+
+4. Obtener todos los productos
+
+• Método: GET
+• URL: http://localhost:3000/api/products
+
+5. Crear un nuevo producto
+
+• Método: POST
+• URL: http://localhost:3000/api/products/register
+• Configuración en Postman: Pestaña Body ➔ raw ➔ JSON.
+• Cuerpo (Ejemplo JSON a enviar):json
+{
+  "name": "Teclado Mecánico",
+  "price": 75.00
+}
+
+#
+1. En Postman: Envíar el JSON con los tres campos:json
+{
+  "name": "Juan Perez",
+  "email": "juan@example.com",
+  "password": "mi_clave_segura_123"
+}
+.
+2. El Controlador: Valida que estén presentes, extrae los tres valores y se los pasa ordenadamente al servicio.
+3. El Servicio: Recibe los tres argumentos, genera el objeto incluyendo la contraseña y lo añade al array usuariosRegistrados.
+4. La Respuesta (201 Created): Postman  devolverá un JSON confirmando el éxito de la operación junto al objeto del usuario recién creado (¡y ahora sí con su ID y fecha de registro automáticos!).
