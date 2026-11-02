@@ -3,7 +3,8 @@ import cors from 'cors';
 import usuariosRouter from './routes/users.routes.js';
 import productosRouter from './routes/products.routes.js';
 import { notFoundHandler, errorHandler } from './middlewares/errorHandler.js';
-
+//1. index.js intercepta la petición en /api/users y 
+// se la pasa a  archivo de rutas
 const app = express();
 const PORT = 3000;
 

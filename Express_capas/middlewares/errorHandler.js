@@ -7,15 +7,21 @@ export const notFoundHandler = (req, res) => {
     });
 };
 
-// Middleware para manejo centralizado de errores (500) con el codigo actual 
-// nunca se ejecuta porque en este ejemplo 
-// Los controladores responden directamente con res.status(...).json(...) 
-// y devuelven. Nunca llaman next(err)
+// Middleware para manejo centralizado de errores.
+// Se activa cuando un controlador o middleware llama a next(err),
+// por ejemplo getUsers lo invoca desde su catch.
 export const errorHandler = (err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).json({
-        error: 500,
-        mensaje: "Ocurrió un error interno en el servidor.",
-        detalle: err.message
+    // Registramos el error completo en el servidor (no se expone al cliente)
+    console.error('Error capturado por el errorHandler:');
+    console.error(err.stack || err.message);
+
+    // Si el error trae un estado definido lo respetamos; por defecto 500
+    const statusCode = err.status || 500;
+
+    res.status(statusCode).json({
+        error: statusCode,
+        mensaje: statusCode === 500
+            ? "Ocurrió un error interno en el servidor."
+            : err.message
     });
 };
