@@ -11,7 +11,8 @@ const PORT = 3000;
 app.use(cors());
 app.use(express.json());
 
-// Montaje de rutas con prefijo /api usando rutas relativas en cada router
+// Montaje de rutas con prefijo /api 
+// usando rutas relativas en cada router
 app.use('/api/users', usuariosRouter);
 app.use('/api/products', productosRouter);
 /*
