@@ -4,6 +4,7 @@ import { getUsers, createNewUser, getUserById } from '../controllers/users.contr
 const router = express.Router();
 // usuariosRouter recibe la petición en la raíz (/) 
 // y ejecuta la función del controlador getUsers
+
 router.get('/', getUsers);
 router.post('/register', createNewUser);
 router.get('/:id', getUserById);
